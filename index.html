@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let CPUSelection = Math.floor(Math.random() * 3) + 1;
+        if(CPUSelection==1) {
+            CPUSelection = "Rock";
+        }else if (CPUSelection==2) {
+                CPUSelection = "Paper";
+            }else if (CPUSelection==3) {
+                CPUSelection = "Scissors";
+            }else {
+                alert('Error: couldnt assign value to CPUSelection');
+                }
+        
+        let playerSelection = prompt("Write 'Rock', 'Paper' or 'Scissors'");
+        playerSelection = playerSelection.toLowerCase();
+
+        weaponComparison();
+
+function weaponComparison(){
+    if(playerSelection == 'rock' || playerSelection == 'paper' || playerSelection == "scissors"){
+        startGame();
+    } else {
+            "Please enter one of the 3 options";
+        }
+
+    
+}
+
+function startGame(){
+    if (CPUSelection=="Rock" && playerSelection== "rock"){
+        alert("Rock VS Rock, thats a DRAW");
+    }else if (CPUSelection=="Rock" && playerSelection== "paper"){
+            alert("Paper VS Rock, YOU WIN");
+    }else if (CPUSelection=="Rock" && playerSelection== "scissors"){
+        alert("Scissors VS Rock, YOU LOSE");
+    }else if (CPUSelection=="Paper" && playerSelection== "paper"){
+        alert("Paper VS Paper, thats a DRAW");
+    }else if (CPUSelection=="Paper" && playerSelection== "scissors"){
+            alert("Scissors VS Paper, YOU WIN");
+    }else if (CPUSelection=="Paper" && playerSelection== "rock"){
+        alert("Rock VS Paper, YOU LOSE");
+    }else if (CPUSelection=="Scissors" && playerSelection== "scissors"){
+        alert("Scissors VS Scissors, thats a DRAW");
+    }else if (CPUSelection=="Scissors" && playerSelection== "rock"){
+            alert("Rock VS Scissors, YOU WIN");
+    }else if (CPUSelection=="Scissors" && playerSelection== "paper"){
+        alert("Paper VS Scissors, YOU LOSE");
+        }else;
+    }
+        
+    </script>
+</body>
+</html>
