@@ -6,7 +6,27 @@
     <title>Document</title>
 </head>
 <body>
+
+    <div class="optionsContainer">
+        <button class="rock">Rock</button>
+        <button class="paper">Paper</button>
+        <button class="scissors">Scissors</button>
+    </div>
+
+
+
+
+
     <script>
+
+        const selectRock = document.querySelector('.rock');
+        const selectPaper = document.querySelector('.paper');
+        const selectScissors = document.querySelector('.scissors');
+        const clickButtonEvent = document.querySelector('button');
+
+        
+
+
         let CPUSelection = Math.floor(Math.random() * 3) + 1;
         if(CPUSelection==1) {
             CPUSelection = "Rock";
@@ -18,20 +38,33 @@
                 alert('Error: couldnt assign value to CPUSelection');
                 }
         
-        let playerSelection = prompt("Write 'Rock', 'Paper' or 'Scissors'");
-        playerSelection = playerSelection.toLowerCase();
+        ///let playerSelection = prompt("Write 'Rock', 'Paper' or 'Scissors'");
+        ///playerSelection = playerSelection.toLowerCase();
+        ///weaponComparison();
 
-        weaponComparison();
+///function weaponComparison(){
+    selectRock.addEventListener('click', function (e){
 
-function weaponComparison(){
-    if(playerSelection == 'rock' || playerSelection == 'paper' || playerSelection == "scissors"){
+        playerSelection = "rock"
         startGame();
-    } else {
-            "Please enter one of the 3 options";
-        }
+
+    })
+
+
+    selectPaper.addEventListener('click', function (e){
+        playerSelection = "paper"
+        startGame();
+    })
+
+    selectScissors.addEventListener('click', function (e){
+        playerSelection = "scissors"
+        startGame();
+    
+    })
+
 
     
-}
+
 
 function startGame(){
     if (CPUSelection=="Rock" && playerSelection== "rock"){
