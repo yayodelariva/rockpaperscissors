@@ -7,10 +7,19 @@
 </head>
 <body>
 
-    <div class="optionsContainer">
-        <button class="rock">Rock</button>
-        <button class="paper">Paper</button>
-        <button class="scissors">Scissors</button>
+    <div id="optionsContainer">
+        <button id="rock" class="rock">Rock</button>
+        <button id="paper" class="paper">Paper</button>
+        <button id="scissors" class="scissors">Scissors</button>
+    </div>
+    <div class="resultsContainer">
+        <div id="announcementContainer"></div>
+            <span id="playerWins">YOU WIN</span>
+            <span id="playerLose">YOU LOSE</span>
+            <span id="playerDraw">DRAW</span>
+        <div id="scoreboard"></div>
+        <button id="retry">Play Again</button>
+
     </div>
 
 
@@ -19,74 +28,237 @@
 
     <script>
 
-        const selectRock = document.querySelector('.rock');
-        const selectPaper = document.querySelector('.paper');
-        const selectScissors = document.querySelector('.scissors');
+        const selectRock = document.querySelector('#rock');
+        const selectPaper = document.querySelector('#paper');
+        const selectScissors = document.querySelector('#scissors');
         const clickButtonEvent = document.querySelector('button');
+        let playerScore = 0;
+        let CPUScore = 0;
+        const resultsContainer = document.querySelector('.resultsContainer');
+        let scoreboard = document.getElementById('scoreboard');
+        let announcement = document.getElementById('#announcementContainer');
+        const selectButtons = document.getElementsByClassName ('defaultButton'[0]);
+        const buttonsContainer = document.querySelector('#optionsContainer')
+        const retryButton = document.getElementById('retry')
+        const winAnnouncement = document.getElementById('playerWins')
+        const loseAnnouncement = document.getElementById('playerLose')
+        const drawAnnouncement = document.getElementById('playerDraw')
+        const toggleRock = document.getElementById('rock')
+        const togglePaper = document.getElementById('paper')
+        const toggleScissors = document.getElementById('scissors')
+        
+
+        retryButton.style.display = 'none'
+        hideAnnouncements()
+
+
+
+
+        function showRPSButtons(){
+        toggleRock.style.display = 'inline'
+        togglePaper.style.display = 'inline'
+        toggleScissors.style.display = 'inline'
+        }
+
+
+        function hideRPSButtons(){
+            
+            toggleRock.style.display = 'none'
+            togglePaper.style.display = 'none'
+            toggleScissors.style.display = 'none'
+        }
+
+        function hideAnnouncements(){
+
+        winAnnouncement.style.display = 'none'
+        loseAnnouncement.style.display = 'none'
+        drawAnnouncement.style.display = 'none'
+        }
+
+
+ 
+        
+
+        function playerWins(){
+            winAnnouncement.style.display = 'inline'
+            scoreboard.style.display = 'block'
+            scoreboard.innerHTML = "Player: " + playerScore + " - " + "CPU: " + CPUScore;
+            resultsContainer.appendChild(scoreboard)
+        }
+
+        function playerLose(){
+            loseAnnouncement.style.display = 'inline'
+            scoreboard.style.display = 'block'
+            scoreboard.innerHTML = "Player: " + playerScore + " - " + "CPU: " + CPUScore;
+            resultsContainer.appendChild(scoreboard)
+        }
+
+        function playerDraw(){
+            drawAnnouncement.style.display = 'inline'
+            scoreboard.style.display = 'block'
+            scoreboard.innerHTML = "Player: " + playerScore + " - " + "CPU: " + CPUScore;
+            resultsContainer.appendChild(scoreboard)
+        }
+        
+        
 
         
 
 
-        let CPUSelection = Math.floor(Math.random() * 3) + 1;
+      
+
+            
+        playerChoice()
+
+function playerChoice(){
+    
+    selectRock.addEventListener('click', function (e){
+
+        
+
+        playerSelection = "rock"
+        CPUSelection = Math.floor(Math.random() * 3) + 1;
         if(CPUSelection==1) {
             CPUSelection = "Rock";
+            
         }else if (CPUSelection==2) {
                 CPUSelection = "Paper";
+                
             }else if (CPUSelection==3) {
                 CPUSelection = "Scissors";
+                
             }else {
                 alert('Error: couldnt assign value to CPUSelection');
                 }
-        
-        ///let playerSelection = prompt("Write 'Rock', 'Paper' or 'Scissors'");
-        ///playerSelection = playerSelection.toLowerCase();
-        ///weaponComparison();
-
-///function weaponComparison(){
-    selectRock.addEventListener('click', function (e){
-
-        playerSelection = "rock"
+        hideAnnouncements();
         startGame();
+            
 
     })
 
 
     selectPaper.addEventListener('click', function (e){
         playerSelection = "paper"
+        CPUSelection = Math.floor(Math.random() * 3) + 1;
+        if(CPUSelection==1) {
+            CPUSelection = "Rock";
+            
+        }else if (CPUSelection==2) {
+                CPUSelection = "Paper";
+                
+            }else if (CPUSelection==3) {
+                CPUSelection = "Scissors";
+                
+            }else {
+                alert('Error: couldnt assign value to CPUSelection');
+                }
+        hideAnnouncements();
         startGame();
     })
 
     selectScissors.addEventListener('click', function (e){
         playerSelection = "scissors"
+        CPUSelection = Math.floor(Math.random() * 3) + 1;
+        if(CPUSelection==1) {
+            CPUSelection = "Rock";
+            
+        }else if (CPUSelection==2) {
+                CPUSelection = "Paper";
+                
+            }else if (CPUSelection==3) {
+                CPUSelection = "Scissors";
+                
+            }else {
+                alert('Error: couldnt assign value to CPUSelection');
+                }
+
+        hideAnnouncements();
         startGame();
     
     })
 
-
-    
+}
 
 
 function startGame(){
+
     if (CPUSelection=="Rock" && playerSelection== "rock"){
         alert("Rock VS Rock, thats a DRAW");
+            playerDraw()
+            checkScore()
+
     }else if (CPUSelection=="Rock" && playerSelection== "paper"){
             alert("Paper VS Rock, YOU WIN");
+            playerScore = playerScore + 1
+            playerWins()
+            checkScore()
+
     }else if (CPUSelection=="Rock" && playerSelection== "scissors"){
-        alert("Scissors VS Rock, YOU LOSE");
+            alert("Scissors VS Rock, YOU LOSE");
+            CPUScore = CPUScore + 1
+            playerLose()
+            checkScore()
+
     }else if (CPUSelection=="Paper" && playerSelection== "paper"){
         alert("Paper VS Paper, thats a DRAW");
+            playerDraw()
+            checkScore()
+            
     }else if (CPUSelection=="Paper" && playerSelection== "scissors"){
             alert("Scissors VS Paper, YOU WIN");
+            playerScore = playerScore + 1
+            playerWins()
+            checkScore()
+
     }else if (CPUSelection=="Paper" && playerSelection== "rock"){
         alert("Rock VS Paper, YOU LOSE");
+            CPUScore = CPUScore + 1
+            playerLose()
+            checkScore()
+
     }else if (CPUSelection=="Scissors" && playerSelection== "scissors"){
-        alert("Scissors VS Scissors, thats a DRAW");
+            alert("Scissors VS Scissors, thats a DRAW");
+            playerDraw()
+            checkScore()
+
     }else if (CPUSelection=="Scissors" && playerSelection== "rock"){
             alert("Rock VS Scissors, YOU WIN");
+            playerScore = playerScore + 1
+            playerWins()
+            checkScore()
+
     }else if (CPUSelection=="Scissors" && playerSelection== "paper"){
-        alert("Paper VS Scissors, YOU LOSE");
+            alert("Paper VS Scissors, YOU LOSE");
+            CPUScore = CPUScore + 1
+            playerLose()
+            checkScore()
+        
         }else;
-    }
+}
+
+
+function checkScore(){
+    if (playerScore >= 5 || CPUScore >= 5){
+    alert('Game over')
+    hideAnnouncements()
+    hideRPSButtons()
+    retryButton.style.display = 'inline'
+
+   retryButton.addEventListener('click', function (e){
+    retryButton.style.display = 'none';
+    scoreboard.style.display = 'none'
+    showRPSButtons()
+    playerScore = 0
+    CPUScore = 0
+    
+
+   })
+}
+}
+
+
+
+
         
     </script>
 </body>
