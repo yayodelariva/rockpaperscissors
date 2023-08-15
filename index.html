@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Document</title>
 </head>
 <body>
 
     <div id="optionsContainer">
-        <button id="rock" class="rock">Rock</button>
-        <button id="paper" class="paper">Paper</button>
-        <button id="scissors" class="scissors">Scissors</button>
+        <button id="rock" class="option rock">Rock</button>
+        <button id="paper" class="option paper">Paper</button>
+        <button id="scissors" class="option scissors">Scissors</button>
     </div>
     <div class="resultsContainer">
         <div id="announcementContainer"></div>
@@ -32,6 +33,7 @@
         const selectPaper = document.querySelector('#paper');
         const selectScissors = document.querySelector('#scissors');
         const clickButtonEvent = document.querySelector('button');
+        const options = document.querySelectorAll('.option')
         let playerScore = 0;
         let CPUScore = 0;
         const resultsContainer = document.querySelector('.resultsContainer');
@@ -46,6 +48,23 @@
         const toggleRock = document.getElementById('rock')
         const togglePaper = document.getElementById('paper')
         const toggleScissors = document.getElementById('scissors')
+
+
+
+        function addBorderStyle(e){
+            this.classList.add('shinyborder')
+        }
+
+
+        options.forEach(option => option.addEventListener('mouseover', addBorderStyle));
+
+
+        function removeBorderStyle(e){
+            this.classList.remove('shinyborder')
+        }
+
+        options.forEach(option => option.addEventListener('mouseout', removeBorderStyle));
+
         
 
         retryButton.style.display = 'none'
